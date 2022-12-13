@@ -8,9 +8,8 @@ odoo.define('pos_promo_select.pos', function (require) {
         applyPromotion: async function (program_id) {
             const promoProgram = this.pos.promo_programs.find(
                 (program) => program.id == program_id);
-                console.log(program_id);
-                console.log(promoProgram);
-                if (promoProgram) {
+                const order = this.pos.get_order();
+                if (promoProgram && !(order.activePromoProgramIds.includes(program_id))) {
                 // TODO these two operations should be atomic
                 this.activePromoProgramIds.push(promoProgram.id);
                 this.trigger('update-rewards');

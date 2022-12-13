@@ -2,7 +2,7 @@
 
 {
     "name": "POS Promotion Selection",
-    "version": "1.0",
+    "version": "1.2",
     "summary": "This module allows user to select promotion based on Product in Point of sale.| POS Promotion Selection",
     'description': """
 POS Promtion Selection
