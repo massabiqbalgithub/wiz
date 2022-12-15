@@ -5,18 +5,13 @@
         <field name="model">coupon.program</field>
         <field name="inherit_id" ref="coupon.coupon_program_view_form_common"/>
         <field name="arch" type="xml">
-            <!-- <xpath expr="//group[@name='reward']" position="before">
-                <group>
-                    <field name="promo_applicability" widget="radio"/>
-                </group>
-            </xpath> -->
             <xpath expr="//label[@for='discount_type']" position="before">
                 <field name="lot_specific"/>
                 <field 
                     name="specific_lot_ids" 
                     widget="many2many_tags" 
                     placeholder="Select lots"
-                    attrs="{'invisible':[('lot_specific','=',False)]}"/>
+                    attrs="{'required':[('lot_specific','=',True)],'invisible':[('lot_specific','=',False)]}"/>
             </xpath>
         </field>
     </record>
