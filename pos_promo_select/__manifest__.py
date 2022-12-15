@@ -14,6 +14,9 @@ POS Promtion Selection
     "website": "https://www",
     'author': 'Fazal, Massab',
     "depends": ['point_of_sale'],
+    'data':[
+        'views/coupon_program.xml',
+    ],
     'assets': {
         'point_of_sale.assets': [
             "pos_promo_select/static/src/js/order.js",
