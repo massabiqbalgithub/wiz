@@ -31,12 +31,29 @@ class StockLotIn(models.Model):
     _inherit = 'stock.production.lot'
 
     incentive = fields.Float()
+    lot_name_product = fields.Char()
 
-    def name_get(self):
-        res = []
-        for rec in self:
-            res.append((rec.id, '%s : %s' % (rec.name, rec.product_id.barcode)))
-        return res
+    @api.model
+    def create(self, val):
+        rec = super(StockLotIn, self).create(val)
+        rec.name = val['lot_name_product'] + '(' + rec.product_id.barcode + ')'
+        return rec
+
+    # def write(self, val):
+    #     res = super(StockLotIn, self).write(val)
+    #     self.update_lot()
+    #     return res
+
+    @api.onchange('lot_name_product', 'product_id')
+    def update_lot(self):
+        if self.lot_name_product and self.product_id.barcode:
+            self.name = self.lot_name_product + '(' + self.product_id.barcode + ')'
+
+    # def name_get(self):
+    #     res = []
+    #     for rec in self:
+    #         res.append((rec.id, '%s : %s' % (rec.name, rec.product_id.barcode)))
+    #     return res
 
 
 class PosOrderLineIn(models.Model):
